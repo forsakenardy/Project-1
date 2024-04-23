@@ -2,7 +2,7 @@ class neutral {
     constructor() {
       this.velocity = 8;
       this.gameAreaElement = document.querySelector("#content");
-      this.gameAreaHeight = this.gameAreaElement.getBoundingClientRect().height;
+      this.gameAreaHeight = (this.gameAreaElement.getBoundingClientRect().height);
       this.gameAreaWidth = this.gameAreaElement.getBoundingClientRect().width;
       this.x = this.gameAreaWidth;
       this.y = 0;
@@ -36,16 +36,16 @@ class neutral {
 function collissionCheck2() {
     neutralArray.forEach((neutral) => {
         if (isColliding(player, neutral.element) && speedY < 0) {
-            playerPosY = neutral.element.getBoundingClientRect().top - (player.offsetHeight + 23);
-            player.style.top = playerPosY + "px";
-         saltando = false;
          onPlatform = true ;
             speedY = 0
             console.log("hello");
-        }else{
-            
+            if (speedY === 0) {
+                saltando = false;
+            }
+            else if ( speedY < 0) {
+                saltando = true
+            }
         }
-
     }); 
 }
 
@@ -56,7 +56,7 @@ function isColliding(rect1, rect2) {
     return (
         rect1Bounds.left < rect2Bounds.right &&
         rect1Bounds.right > rect2Bounds.left &&
-        rect1Bounds.top < rect2Bounds.bottom &&
+        rect1Bounds.top < rect2Bounds.top - 80 &&
         rect1Bounds.bottom > rect2Bounds.top
     );
 }

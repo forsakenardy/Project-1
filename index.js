@@ -1,3 +1,25 @@
+const startbutton = document.querySelector(".start");
+  const inicio = document.querySelector(".inicio");
+  const scenario = document.querySelector(".scenario");
+  const empezarbutton = document.querySelector(".empezar");
+  const algo = document.querySelector("#screen");
+
+empezarbutton.addEventListener("click", () => {
+    empezarbutton.classList.add("not-displayed");
+    algo.classList.add("background");
+    startbutton.classList.remove("not-displayed");
+    inicio.classList.add("background-image")
+
+
+  })
+startbutton.addEventListener("click", () => {
+    gameAreaElement.classList.remove("not-displayed");
+    inicio.classList.add("not-displayed");
+    scenario.classList.add("not-displayed")
+})
+
+
+
 let time = new Date();
 let framecounter = 0;
 const neutralArray = [];
@@ -9,7 +31,6 @@ setInterval(() => {
     neutralArray.push(newNeutral);
 }, 1000);
 setInterval(() => {
-    console.log("esto sale")
     const newcoleccionable = new coleccionables();
     coleccionablesArray.push(newcoleccionable)
 }, 5000);
@@ -45,7 +66,7 @@ function Loop() {
 
 let sueloY = 70;
 let speedY = 0;
-let impulse = 1100;
+let impulse = 1000;
 let gravity = 2500;
 
 let playerPosX = 20;
@@ -94,12 +115,13 @@ function HandleKeyDown(ev) {
     }
 }
 function Saltar() {
-    if (playerPosY === sueloY || onPlatform) {
-        saltando = true;
-        console.log(saltando);
-        speedY = impulse;
+    if(!saltando) {
+        if (playerPosY === sueloY || onPlatform) {
+            saltando = true;
+            console.log(saltando);
+            speedY = impulse;
+        }
     }
-
 }
 function update() {
     moveFloor();

@@ -37,14 +37,13 @@ class coleccionables {
 
 function collissionCheck() {
     coleccionablesArray.forEach((coleccionable) => {
-        if (isColliding(player, coleccionable.element)) {
+        if (isColliding2(player, coleccionable.element)) {
             coleccionable.element.remove()
             console.log("¡Colisión detectada!");
         }
     });
 }
-
-function isColliding(rect1, rect2) {
+function isColliding2(rect1, rect2) {
     const rect1Bounds = rect1.getBoundingClientRect();
     const rect2Bounds = rect2.getBoundingClientRect();
 
