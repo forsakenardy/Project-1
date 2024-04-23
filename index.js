@@ -1,16 +1,23 @@
 let time = new Date();
 let framecounter = 0;
 const neutralArray = [];
+const coleccionablesArray = [];
+
 
 setInterval(() => {
     const newNeutral = new neutral();
     neutralArray.push(newNeutral);
-  }, 1000);
+}, 1000);
+setInterval(() => {
+    console.log("esto sale")
+    const newcoleccionable = new coleccionables();
+    coleccionablesArray.push(newcoleccionable)
+}, 5000);
 
-if(document.readyState === "complete" || document.readyState === "interactive"){
-    setTimeout (Init, 1);
+if (document.readyState === "complete" || document.readyState === "interactive") {
+    setTimeout(Init, 1);
 }
-else{
+else {
     document.addEventListener("DOMContentLoaded", Init)
 }
 
@@ -23,10 +30,19 @@ function Init() {
 function Loop() {
     framecounter = (new Date() - time) / 1000;
     time = new Date();
+    neutralArray.forEach((neutral) => {
+        neutral.move();
+
+    })
+    coleccionablesArray.forEach((coleccionable) => {
+        coleccionable.move();
+    });
+    collissionCheck2();
+    collissionCheck();
     update();
     requestAnimationFrame(Loop);
 }
- 
+
 let sueloY = 70;
 let speedY = 0;
 let impulse = 1100;
@@ -37,9 +53,10 @@ let playerPosY = sueloY;
 
 let parado = false
 let saltando = false
+let onPlatform = false
 
 let sueloX = 0;
-let scenarySpeed = 1280/3;
+let scenarySpeed = 1280 / 3;
 let gameSpeed = 1;
 let score = 0
 
@@ -59,38 +76,39 @@ function start() {
     suelo = document.querySelector(".suelo");
     gameOver = document.querySelector(".gameover");
     gameAreaElement = document.querySelector("#content");
-    textScore =  document.querySelector(".score");
+    textScore = document.querySelector(".score");
     player = document.querySelector(".player")
     document.addEventListener("keydown", HandleKeyDown);
 }
 function cambiarImagen() {
-    if( saltando === false) {
+    if (saltando === false) {
         player.src = imagenes[index];
         index = (index + 1) % imagenes.length;
     }
 }
-const jumpInterval = setInterval (cambiarImagen, 250);
+const jumpInterval = setInterval(cambiarImagen, 250);
 
 function HandleKeyDown(ev) {
-    if(ev.keyCode == 32) {
+    if (ev.keyCode == 32) {
         Saltar();
     }
 }
 function Saltar() {
-    if(playerPosY === sueloY) {
+    if (playerPosY === sueloY || onPlatform) {
         saltando = true;
         console.log(saltando);
         speedY = impulse;
     }
+
 }
 function update() {
     moveFloor();
     movePlayer();
-    speedY -= gravity * framecounter; 
+    speedY -= gravity * framecounter;
 }
 
 function moveFloor() {
-    sueloX += desplazamiento(); 
+    sueloX += desplazamiento();
     suelo.style.left = -(sueloX % gameAreaElement.clientWidth) + "px";
 }
 
@@ -100,7 +118,7 @@ function desplazamiento() {
 function movePlayer() {
     playerPosY += (speedY * framecounter);
     player.style.bottom = playerPosY;
-    if(playerPosY < sueloY) {
+    if (playerPosY < sueloY) {
         Tocarsuelo();
     }
 }
@@ -109,6 +127,7 @@ function Tocarsuelo() {
     speedY = 0;
     saltando = false;
 }
+
 
 
 

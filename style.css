@@ -13,8 +13,8 @@
 #content {
     background-image: url(istockphoto-517897328-612x612.jpg);
     background-size: cover;
-    width: 90%;
-    height: 90%;
+    width: 90vw;
+    height: 90vh;
     position: relative;
     overflow: hidden;
 }
@@ -32,8 +32,16 @@
     position: absolute;
 }
 .neutral {
-    height: 100px;
-    width: 100px;
-    background-color: aqua;
+    height: 70px;
+    width: 400px;
+    background-image:  url("suelo.png");
+    background-size: cover;
+    background-position: bottom;
+    position: absolute;
+}
+.coleccionables {
+    height: 30px;
+    width: 30px;
+    background-color: antiquewhite;
     position: absolute;
 }
