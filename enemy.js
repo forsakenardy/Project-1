@@ -16,8 +16,8 @@ class enemy {
         this.gameAreaElement.appendChild(this.element);
         this.y = Math.floor(
             Math.random() *
-            (this.gameAreaHeight - this.element.getBoundingClientRect().height) -
-            this.element.getBoundingClientRect().height
+            (this.gameAreaHeight - this.element.getBoundingClientRect().height -100) -
+            this.element.getBoundingClientRect().height +100
         );
         this.height = this.element.getBoundingClientRect().height;
         this.width = this.element.getBoundingClientRect().width;
@@ -38,11 +38,27 @@ class enemy {
 function collissionCheck3() {
     enemysArray.forEach((enemy) => {
         if (isColliding2(player, enemy.element)) {
-            enemy.element.remove()
+            enemy.element.remove();
+            audioExplosion.play();
             console.log("¡Colisión detectada!");
+            perderVida();
+        }
+        else if (lives <= 0) {
+            gameOver.classList.remove("not-displayed");
+            gameAreaElement.classList.add("not-displayed");
+            lives = 3;
+            textLives.textContent = lives
+            score = 0;
+            textScore.textContent = score
         }
     });
 }
+function perderVida() {
+    lives--;
+    textLives.textContent = lives;
+ 
+}
+
 function isColliding2(rect1, rect2) {
     const rect1Bounds = rect1.getBoundingClientRect();
     const rect2Bounds = rect2.getBoundingClientRect();

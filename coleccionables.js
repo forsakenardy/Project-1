@@ -16,8 +16,8 @@ class coleccionables {
         this.gameAreaElement.appendChild(this.element);
         this.y = Math.floor(
             Math.random() *
-            (this.gameAreaHeight - this.element.getBoundingClientRect().height) -
-            this.element.getBoundingClientRect().height
+            (this.gameAreaHeight - this.element.getBoundingClientRect().height -100) -
+            this.element.getBoundingClientRect().height +100
         );
         this.height = this.element.getBoundingClientRect().height;
         this.width = this.element.getBoundingClientRect().width;
@@ -39,10 +39,17 @@ function collissionCheck() {
     coleccionablesArray.forEach((coleccionable) => {
         if (isColliding2(player, coleccionable.element)) {
             coleccionable.element.remove()
+            audioColeccionable.play();
             console.log("¡Colisión detectada!");
+            ganarPuntos();
         }
     });
 }
+function ganarPuntos() {
+    score++;
+    textScore.textContent = score
+}
+
 function isColliding2(rect1, rect2) {
     const rect1Bounds = rect1.getBoundingClientRect();
     const rect2Bounds = rect2.getBoundingClientRect();

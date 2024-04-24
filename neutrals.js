@@ -16,8 +16,8 @@ class neutral {
         this.gameAreaElement.appendChild(this.element);
         this.y = Math.floor(
             Math.random() *
-            (this.gameAreaHeight - this.element.getBoundingClientRect().height) -
-            this.element.getBoundingClientRect().height
+            (this.gameAreaHeight - this.element.getBoundingClientRect().height -350) -
+            this.element.getBoundingClientRect().height  + 350
         );
         this.height = this.element.getBoundingClientRect().height;
         this.width = this.element.getBoundingClientRect().width;

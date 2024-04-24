@@ -2,25 +2,41 @@ const startbutton = document.querySelector(".start");
   const inicio = document.querySelector(".inicio");
   const scenario = document.querySelector(".scenario");
   const empezarbutton = document.querySelector(".empezar");
-  const algo = document.querySelector("#screen");
+  let algo = document.querySelector("#screen");
   let audioInicial = document.querySelector(".audio-inicial");
-  let audioSalto = document.querySelector(".salto")
-
+  let audioSalto = document.querySelector(".salto");
+  let audioExplosion = document.querySelector(".explosion");
+  let audioColeccionable = document.querySelector(".coleccionable");
+  const volverAlMenuButton = document.querySelector(".Volver-al-menu")
 empezarbutton.addEventListener("click", () => {
     empezarbutton.classList.add("not-displayed");
     algo.classList.add("background");
     startbutton.classList.remove("not-displayed");
     inicio.classList.add("background-image");
     audioInicial.setAttribute("src","suits-you-69233.mp3");
-    audioInicial.play()
-
-
-  })
+    audioInicial.play();
+})
 startbutton.addEventListener("click", () => {
     gameAreaElement.classList.remove("not-displayed");
     inicio.classList.add("not-displayed");
-    scenario.classList.add("not-displayed")
+    scenario.classList.add("not-displayed");
+    algo.classList.remove("background");
+    algo.classList.add("background-black");
+
+});
+
+volverAlMenuButton.addEventListener("click", () => {
+    gameOver.classList.add("not-displayed");
+    empezarbutton.classList.remove("not-displayed");
+    inicio.classList.remove("not-displayed");
+    algo.classList.remove("background-black");
+    startbutton.classList.add("not-displayed");
+    scenario.classList.remove("not-displayed")
+    inicio.classList.remove("background-image")
+    empezarbutton.innerHTML = "Any more qwestions?"
+
 })
+
 
 
 
@@ -34,15 +50,15 @@ const enemysArray = [];
 setInterval(() => {
     const newNeutral = new neutral();
     neutralArray.push(newNeutral);
-}, 1000);
+}, 1200);
 setInterval(() => {
     const newcoleccionable = new coleccionables();
     coleccionablesArray.push(newcoleccionable)
-}, 4000);
+}, 4100);
 setInterval (() => {
     const newEnemy = new enemy();
     enemysArray.push(newEnemy);
-}, 900);
+}, 1500);
 
 if (document.readyState === "complete" || document.readyState === "interactive") {
     setTimeout(Init, 1);
@@ -92,13 +108,16 @@ let onPlatform = false
 let sueloX = 0;
 let scenarySpeed = 1280 / 3;
 let gameSpeed = 1;
-let score = 0
+let score = 0;
+let lives = 3;
 
 let contenedor;
 let textScore;
 let suelo;
 let gameAreaElement;
 let player;
+let textLives;
+let gameOver
 
 let index = 0;
 let imagenes = [
@@ -111,7 +130,8 @@ function start() {
     gameOver = document.querySelector(".gameover");
     gameAreaElement = document.querySelector("#content");
     textScore = document.querySelector(".score");
-    player = document.querySelector(".player")
+    player = document.querySelector(".player");
+    textLives = document.querySelector(".lives")
     document.addEventListener("keydown", HandleKeyDown);
 }
 function cambiarImagen() {
@@ -139,6 +159,7 @@ function Saltar() {
     }
 }
 function update() {
+    if(parado) return;
     moveFloor();
     movePlayer();
     speedY -= gravity * framecounter;
