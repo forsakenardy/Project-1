@@ -3,12 +3,16 @@ const startbutton = document.querySelector(".start");
   const scenario = document.querySelector(".scenario");
   const empezarbutton = document.querySelector(".empezar");
   const algo = document.querySelector("#screen");
+  let audioInicial = document.querySelector(".audio-inicial");
+  let audioSalto = document.querySelector(".salto")
 
 empezarbutton.addEventListener("click", () => {
     empezarbutton.classList.add("not-displayed");
     algo.classList.add("background");
     startbutton.classList.remove("not-displayed");
-    inicio.classList.add("background-image")
+    inicio.classList.add("background-image");
+    audioInicial.setAttribute("src","suits-you-69233.mp3");
+    audioInicial.play()
 
 
   })
@@ -24,6 +28,7 @@ let time = new Date();
 let framecounter = 0;
 const neutralArray = [];
 const coleccionablesArray = [];
+const enemysArray = [];
 
 
 setInterval(() => {
@@ -33,7 +38,11 @@ setInterval(() => {
 setInterval(() => {
     const newcoleccionable = new coleccionables();
     coleccionablesArray.push(newcoleccionable)
-}, 5000);
+}, 4000);
+setInterval (() => {
+    const newEnemy = new enemy();
+    enemysArray.push(newEnemy);
+}, 900);
 
 if (document.readyState === "complete" || document.readyState === "interactive") {
     setTimeout(Init, 1);
@@ -58,8 +67,12 @@ function Loop() {
     coleccionablesArray.forEach((coleccionable) => {
         coleccionable.move();
     });
+    enemysArray.forEach((enemy) => {
+        enemy.move();
+    });
     collissionCheck2();
     collissionCheck();
+    collissionCheck3();
     update();
     requestAnimationFrame(Loop);
 }
@@ -112,6 +125,8 @@ const jumpInterval = setInterval(cambiarImagen, 250);
 function HandleKeyDown(ev) {
     if (ev.keyCode == 32) {
         Saltar();
+        audioSalto.play();
+
     }
 }
 function Saltar() {

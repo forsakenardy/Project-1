@@ -36,12 +36,20 @@
 .start {
     height: 60px;
     background-color: bisque;
-    font-size: 40px;
+    font-size: 25px;
+}
+.start:hover {
+    font-size: 35px;
+    transition: 0.3s;
 }
 .empezar {
     height: 60px;
     background-color: bisque;
-    font-size: 40px;
+    font-size: 25px;
+}
+.empezar:hover {
+    font-size: 35px;
+    transition: 0.3s;
 }
 #content {
     background-image: url(istockphoto-517897328-612x612.jpg);
@@ -80,4 +88,22 @@
     width: 30px;
     background-color: antiquewhite;
     position: absolute;
+}
+.enemys {
+    height: 20px;
+    width: 20px;
+    background-color: brown;
+    position: absolute;
+}
+.score {
+    width: 200px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    z-index: 10;
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: right;
 }
