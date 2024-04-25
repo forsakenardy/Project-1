@@ -49,7 +49,9 @@ function collissionCheck3() {
             lives = 3;
             textLives.textContent = lives
             score = 0;
-            textScore.textContent = score
+            textScore.textContent = score;
+            audioInicial.pause();
+            aplausos.play();
         }
     });
 }

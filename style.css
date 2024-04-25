@@ -94,13 +94,27 @@
     position: absolute;
 }
 .enemys {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     background-image: url(asdasd-Photoroom.png-Photoroom.png);
     background-size: cover;
     position: absolute;
 }
-.score {
+.pollo {
+    height: 100px;
+    width: 50px;
+    background-image: url(pollo.gif);
+    background-size: cover;
+    position: absolute;
+}
+.nube {
+    height: 150px;
+    width: 225px;
+    background-image: url("7277681-desenhos-nuvem-com-cara-emocoes-gratis-vetor-removebg-preview.png");
+    background-size: cover;
+    position: absolute;
+}
+.score1 {
     width: 200px;
     height: 30px;
     position: absolute;
@@ -112,7 +126,7 @@
     font-weight: bold;
     text-align: right;
 }
-.lives {
+.lives1 {
     width: 200px;
     height: 30px;
     position: absolute;
@@ -138,6 +152,8 @@
     font-size: 40px;
     margin-bottom: 10%;
     margin-top: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 .juego-terminado h1 {
     font-size: 80px;

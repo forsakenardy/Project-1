@@ -8,6 +8,9 @@ const startbutton = document.querySelector(".start");
   let audioExplosion = document.querySelector(".explosion");
   let audioColeccionable = document.querySelector(".coleccionable");
   const volverAlMenuButton = document.querySelector(".Volver-al-menu")
+  let aplausos = document.querySelector(".aplausos");
+
+
 empezarbutton.addEventListener("click", () => {
     empezarbutton.classList.add("not-displayed");
     algo.classList.add("background");
@@ -45,6 +48,8 @@ let framecounter = 0;
 const neutralArray = [];
 const coleccionablesArray = [];
 const enemysArray = [];
+const nubesArray = [];
+const polloArray = [];
 
 
 setInterval(() => {
@@ -59,6 +64,14 @@ setInterval (() => {
     const newEnemy = new enemy();
     enemysArray.push(newEnemy);
 }, 1500);
+setInterval(() => {
+    const newNube = new nubes();
+    nubesArray.push(newNube);
+}, 3000);
+setInterval(() => {
+    const newPollo = new pollo();
+    polloArray.push(newPollo)
+}, 10000)
 
 if (document.readyState === "complete" || document.readyState === "interactive") {
     setTimeout(Init, 1);
@@ -78,7 +91,6 @@ function Loop() {
     time = new Date();
     neutralArray.forEach((neutral) => {
         neutral.move();
-
     })
     coleccionablesArray.forEach((coleccionable) => {
         coleccionable.move();
@@ -86,6 +98,13 @@ function Loop() {
     enemysArray.forEach((enemy) => {
         enemy.move();
     });
+    nubesArray.forEach((nube) => {
+        nube.move();
+    });
+    polloArray.forEach((pollo) => {
+        pollo.move();
+    });
+
     collissionCheck2();
     collissionCheck();
     collissionCheck3();
