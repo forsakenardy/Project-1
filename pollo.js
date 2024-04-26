@@ -1,6 +1,6 @@
 class pollo {
     constructor() {
-      this.velocity = 5;
+      this.velocity = 8;
       this.gameAreaElement = document.querySelector("#content");
       this.gameAreaHeight = (this.gameAreaElement.getBoundingClientRect().height);
       this.gameAreaWidth = this.gameAreaElement.getBoundingClientRect().width;

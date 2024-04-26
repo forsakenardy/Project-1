@@ -47,7 +47,9 @@ function collissionCheck() {
 }
 function ganarPuntos() {
     score++;
-    textScore.textContent = score
+    textScore.forEach((element) =>{
+       element.textContent = score
+    })
 }
 
 function isColliding2(rect1, rect2) {

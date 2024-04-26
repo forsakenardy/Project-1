@@ -45,11 +45,10 @@ function collissionCheck3() {
         }
         else if (lives <= 0) {
             gameOver.classList.remove("not-displayed");
+            algo.classList.add("gameover2")
             gameAreaElement.classList.add("not-displayed");
             lives = 3;
-            textLives.textContent = lives
-            score = 0;
-            textScore.textContent = score;
+            textLives.textContent = lives;
             audioInicial.pause();
             aplausos.play();
         }

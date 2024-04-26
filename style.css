@@ -62,20 +62,26 @@
     position: relative;
     overflow: hidden;
 }
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 .not-displayed {
     display: none;
 }
 .player {
-    width: 100px;
+    width: 90px;
     height: 100px;
     position: absolute;
     bottom: 10%;
     left: 20%;
-}   
+}
+   
 .suelo {
     width: 200%;
     height: 30%;
-    top: 80%    ;
+    top: 80%;
     position: absolute;
 }
 .neutral {
@@ -126,6 +132,22 @@
     font-weight: bold;
     text-align: right;
 }
+.gameover2 {
+    background-image: url(teatro.avif);
+    background-size: cover;
+}
+.score-gameover {
+    width: 300px;
+    height: 30px;
+    position: absolute;
+    top: 40%;
+    right: 40%;
+    z-index: 10;
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: right;
+}
 .lives1 {
     width: 200px;
     height: 30px;
@@ -140,20 +162,26 @@
 }
 
 .juego-terminado{
-    background-color: bisque;
     width: 60vw;
     height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: end;
     align-items: center;
+    padding-bottom: 7%;
 }
 .volver-al-menu {
-    font-size: 40px;
+    width: 50%;
+    height: 15%;
+    font-size: 20px;
     margin-bottom: 10%;
     margin-top: 15%;
     padding-left: 5%;
     padding-right: 5%;
+}
+.volver-al-menu:hover {
+    font-size: 35;
+    transition: 0.3s;
 }
 .juego-terminado h1 {
     font-size: 80px;

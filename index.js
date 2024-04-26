@@ -25,7 +25,10 @@ startbutton.addEventListener("click", () => {
     scenario.classList.add("not-displayed");
     algo.classList.remove("background");
     algo.classList.add("background-black");
-
+    score = 0;
+    textScore.forEach((element) =>{
+        element.textContent = score
+     })
 });
 
 volverAlMenuButton.addEventListener("click", () => {
@@ -36,7 +39,8 @@ volverAlMenuButton.addEventListener("click", () => {
     startbutton.classList.add("not-displayed");
     scenario.classList.remove("not-displayed")
     inicio.classList.remove("background-image")
-    empezarbutton.innerHTML = "Any more qwestions?"
+    empezarbutton.innerHTML = "Any more qwestions?";
+    algo.classList.remove("gameover2")
 
 })
 
@@ -140,15 +144,17 @@ let gameOver
 
 let index = 0;
 let imagenes = [
-    "depositphotos_34447729-stock-illustration-running-silhouettes-vector-illustration-Photoroom.png-Photoroom.png",
-    "eba88a6668c8f1d42dab4097cc99851d-man-running-silhouette-16-by-vexels.webp"
+    "ni;o1-Photoroom.png-Photoroom.png",
+    "ni;o2-Photoroom.png-Photoroom.png",
+    "ni;o3-Photoroom.png-Photoroom.png",
+    "ni;o2-Photoroom.png-Photoroom.png"
 ];
 
 function start() {
     suelo = document.querySelector(".suelo");
     gameOver = document.querySelector(".gameover");
     gameAreaElement = document.querySelector("#content");
-    textScore = document.querySelector(".score");
+    textScore = document.querySelectorAll(".score");
     player = document.querySelector(".player");
     textLives = document.querySelector(".lives")
     document.addEventListener("keydown", HandleKeyDown);
@@ -159,13 +165,12 @@ function cambiarImagen() {
         index = (index + 1) % imagenes.length;
     }
 }
-const jumpInterval = setInterval(cambiarImagen, 250);
+const jumpInterval = setInterval(cambiarImagen, 200);
 
 function HandleKeyDown(ev) {
     if (ev.keyCode == 32) {
         Saltar();
         audioSalto.play();
-
     }
 }
 function Saltar() {
