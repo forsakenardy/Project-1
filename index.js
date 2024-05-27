@@ -39,7 +39,7 @@ volverAlMenuButton.addEventListener("click", () => {
     startbutton.classList.add("not-displayed");
     scenario.classList.remove("not-displayed")
     inicio.classList.remove("background-image")
-    empezarbutton.innerHTML = "Any more qwestions?";
+    empezarbutton.innerHTML = "Any more questions?";
     algo.classList.remove("gameover2")
 
 })
